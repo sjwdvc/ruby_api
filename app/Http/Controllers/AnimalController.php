@@ -99,7 +99,7 @@ class AnimalController extends Controller
         $animal->loyalty = $request->get('loyalty');
         $animal->owner = $request->get('owner');
 
-        $animal->save();
+        $animal->update();
         return response()->json($animal);
     }
 

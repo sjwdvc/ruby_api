@@ -16,8 +16,8 @@ class AnimalSeeder extends Seeder
     public function run()
     {
         //
-        if (Schema::hasTable('people') == false) {
-            $this->command->warn("Seeding people failed; table 'people' doesn't exist in database...");
+        if (Schema::hasTable('animals') == false) {
+            $this->command->warn("Seeding animals failed; table 'animals' doesn't exist in database...");
             return;
         }
 
