@@ -50,17 +50,17 @@ class PersonController extends Controller
 
         return response()->json(
             Person::create([
-                'id' => $request["id"],
-                'name' => $request["name"],
-                'sex' => $request["sex"],
-                'max_health' => $request["max_health"],
-                'attack' => $request["attack"],
-                'defense' => $request["defense"],
-                'agility' => $request["agility"],
-                'experience' => $request["experience"],
-                'gold' => $request["gold"],
-                'weapon' => $request["weapon"],
-                'armor' => $request["armor"],
+                'id' => $request->get("id"),
+                'name' => $request->get("name"),
+                'sex' => $request->get("sex"),
+                'max_health' => $request->get("max_health"),
+                'attack' => $request->get("attack"),
+                'defense' => $request->get("defense"),
+                'agility' => $request->get("agility"),
+                'experience' => $request->get("experience"),
+                'gold' => $request->get("gold"),
+                'weapon' => $request->get("weapon"),
+                'armor' => $request->get("armor"),
             ])
         );
     }
@@ -109,7 +109,6 @@ class PersonController extends Controller
             'armor' => 'required|integer',
         ]);
 
-        return response()->json($request);
         $person->name = $request->get('name');
         $person->sex = $request->get('sex');
         $person->max_health = $request->get('max_health');
@@ -136,6 +135,5 @@ class PersonController extends Controller
     {
         Person::destroy($person->id);
         return response()->json(["message" => "Person succesvol verwijderd"]);
-
     }
 }

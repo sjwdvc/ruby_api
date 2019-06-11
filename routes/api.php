@@ -16,14 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     //people
-    Route::get('/people', 'PersonController@index')->name('api.allPeople');
+    Route::get('/people', 'PersonController@index')->name('api.getPeople');
     Route::get('/people/{person}', 'PersonController@show')->name('api.getPerson');
-    Route::put('/people/{person}', 'PersonController@update')->name('api.updatePerson');
     Route::post('/people/store', 'PersonController@store')->name('api.storePerson');
+    Route::put('/people/{person}', 'PersonController@update')->name('api.updatePerson');
     Route::delete('/people/{person}', 'PersonController@destroy')->name('api.destroyPerson');
-
-
 
     //animals
     Route::get('/animals', 'AnimalController@index')->name('api.allAnimals');
+    Route::get('/animals/{animal}', 'AnimalController@show')->name('api.getAnimal');
+    Route::post('/animals/store', 'AnimalController@store')->name('api.storeAnimal');
+    Route::put('/animals/{animal}', 'AnimalController@update')->name('api.updateAnimal');
+    Route::delete('/animals/{animal}', 'AnimalController@destroy')->name('api.destroyAnimal');
+
+    
+
 });
