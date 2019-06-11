@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     //people
     Route::get('/people', 'PersonController@index')->name('api.allPeople');
+    Route::get('/people/{person}', 'PersonController@show')->name('api.getPerson');
+    Route::put('/people/{person}', 'PersonController@update')->name('api.updatePerson');
     Route::post('/people/store', 'PersonController@store')->name('api.storePerson');
+    Route::delete('/people/{person}', 'PersonController@destroy')->name('api.destroyPerson');
 
 
 

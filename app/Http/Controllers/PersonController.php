@@ -14,7 +14,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return json_encode(Person::all());
+        return response()->json(Person::all());
     }
 
     /**
@@ -48,7 +48,7 @@ class PersonController extends Controller
             'armor' => 'required|integer',
         ]);
 
-        return json_encode(
+        return response()->json(
             Person::create([
                 'id' => $request["id"],
                 'name' => $request["name"],
@@ -73,7 +73,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        //
+        return response()->json($person);
     }
 
     /**
@@ -96,7 +96,34 @@ class PersonController extends Controller
      */
     public function update(Request $request, Person $person)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'sex' => 'required|in:m,f',
+            'max_health' => 'required|integer',
+            'attack' => 'required|integer',
+            'defense' => 'required|integer',
+            'agility' => 'required|integer',
+            'experience' => 'required|integer',
+            'gold' => 'required|integer',
+            'weapon' => 'required|integer',
+            'armor' => 'required|integer',
+        ]);
+
+        return response()->json($request);
+        $person->name = $request->get('name');
+        $person->sex = $request->get('sex');
+        $person->max_health = $request->get('max_health');
+        $person->attack = $request->get('attack');
+        $person->defense = $request->get('defense');
+        $person->agility = $request->get('agility');
+        $person->experience = $request->get('experience');
+        $person->gold = $request->get('gold');
+        $person->weapon = $request->get('weapon');
+        $person->armor = $request->get('armor');
+
+        $person->update();
+
+        return response()->json($person);
     }
 
     /**
@@ -107,6 +134,8 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        Person::destroy($person->id);
+        return response()->json(["message" => "Person succesvol verwijderd"]);
+
     }
 }
