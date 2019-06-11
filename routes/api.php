@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
-    //
-    Route::get('/person', 'PersonController@index')->name('api.allPerson');
+    //people
+    Route::get('/people', 'PersonController@index')->name('api.allPeople');
+    Route::post('/people/store', 'PersonController@store')->name('api.storePerson');
+
+
+
+    //animals
+    Route::get('/animals', 'AnimalController@index')->name('api.allAnimals');
 });

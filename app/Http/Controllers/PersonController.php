@@ -35,7 +35,34 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'sex' => 'required|in:m,f',
+            'max_health' => 'required|integer',
+            'attack' => 'required|integer',
+            'defense' => 'required|integer',
+            'agility' => 'required|integer',
+            'experience' => 'required|integer',
+            'gold' => 'required|integer',
+            'weapon' => 'required|integer',
+            'armor' => 'required|integer',
+        ]);
+
+        return json_encode(
+            Person::create([
+                'id' => $request["id"],
+                'name' => $request["name"],
+                'sex' => $request["sex"],
+                'max_health' => $request["max_health"],
+                'attack' => $request["attack"],
+                'defense' => $request["defense"],
+                'agility' => $request["agility"],
+                'experience' => $request["experience"],
+                'gold' => $request["gold"],
+                'weapon' => $request["weapon"],
+                'armor' => $request["armor"],
+            ])
+        );
     }
 
     /**
