@@ -50,7 +50,6 @@ class PersonController extends Controller
 
         return response()->json(
             Person::create([
-                'id' => $request->get("id"),
                 'name' => $request->get("name"),
                 'sex' => $request->get("sex"),
                 'max_health' => $request->get("max_health"),
