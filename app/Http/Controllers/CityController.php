@@ -79,6 +79,11 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
+        $this->validate($request, [
+            'name' => 'required|string',
+            'region' => 'required|integer',
+        ]);
+
         $city->name = $request->get('name');
         $city->region = $request->get('region');
 

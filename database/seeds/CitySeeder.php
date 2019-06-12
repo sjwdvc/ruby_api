@@ -28,10 +28,10 @@ class CitySeeder extends Seeder
 
         $stmt = (new Statement())->offset(0);
         $records = $stmt->process($csv);
-//        Log::info($records[0]);
 
         foreach ($records as $record) {
             City::create([
+                "id" => $record["id"],
                 "name" => $record["name"],
                 "region" => $record["region"],
             ]);

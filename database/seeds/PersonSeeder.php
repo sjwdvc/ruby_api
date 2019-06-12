@@ -30,7 +30,6 @@ class PersonSeeder extends Seeder
 
         $stmt = (new Statement())->offset(0);
         $records = $stmt->process($csv);
-//        Log::info($records[0]);
 
         foreach ($records as $record) {
             Person::create([

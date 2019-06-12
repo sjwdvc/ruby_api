@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['people', 'animals', 'armors'];
+    protected $toTruncate = ['people', 'animals', 'armors','cities','creatures'];
     /**
      * Seed the application's database.
      *
@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AnimalSeeder::class);
         $this->call(ArmorSeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(CreatureSeeder::class);
 
         Model::reguard();
     }

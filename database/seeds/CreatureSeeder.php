@@ -1,12 +1,12 @@
 <?php
 
-use App\Armor;
+use App\Creature;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
-class ArmorSeeder extends Seeder
+class CreatureSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,12 @@ class ArmorSeeder extends Seeder
     public function run()
     {
         //
-        if (Schema::hasTable('armors') == false) {
-            $this->command->warn("Seeding armors failed; table 'armors' doesn't exist in database...");
-            return;
-        }
+        if (Schema::hasTable('creatures') == false) {
+        $this->command->warn("Seeding creatures failed; table 'creatures' doesn't exist in database...");
+        return;
+    }
 
-        $csv = Reader::createFromPath('database/csv/armor.csv', 'r');
+        $csv = Reader::createFromPath('database/csv/creature.csv', 'r');
         $csv->setDelimiter(',');
         $csv->setEnclosure('"');
         $csv->setHeaderOffset(0); //set the CSV header offset
@@ -30,11 +30,16 @@ class ArmorSeeder extends Seeder
         $records = $stmt->process($csv);
 
         foreach ($records as $record) {
-            Armor::create([
+            Creature::create([
                 "id" => $record["id"],
                 "name" => $record["name"],
-                "price" => $record["price"],
+                "attack" => $record["attack"],
                 "defense" => $record["defense"],
+                "max_health" => $record["max_health"],
+                "health" => $record["health"],
+                "gold" => $record["gold"],
+                "experience" => $record["experience"],
+                "spawn" => $record["spawn"],
             ]);
         }
     }

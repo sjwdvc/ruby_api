@@ -81,6 +81,12 @@ class ArmorController extends Controller
      */
     public function update(Request $request, Armor $armor)
     {
+        $this->validate($request, [
+            'name' => 'required|string',
+            'price' => 'required|integer',
+            'defense' => 'required|integer',
+        ]);
+
         $armor->name = $request->get('name');
         $armor->price = $request->get('price');
         $armor->defense = $request->get('defense');
