@@ -1,12 +1,12 @@
 <?php
 
-use App\Armor;
+use App\City;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use League\Csv\Reader;
 use League\Csv\Statement;
 
-class ArmorSeeder extends Seeder
+class CitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,12 @@ class ArmorSeeder extends Seeder
     public function run()
     {
         //
-        if (Schema::hasTable('armors') == false) {
-            $this->command->warn("Seeding armors failed; table 'armors' doesn't exist in database...");
+        if (Schema::hasTable('cities') == false) {
+            $this->command->warn("Seeding cities failed; table 'cities' doesn't exist in database...");
             return;
         }
 
-        $csv = Reader::createFromPath('database/csv/armor.csv', 'r');
+        $csv = Reader::createFromPath('database/csv/city.csv', 'r');
         $csv->setDelimiter(',');
         $csv->setEnclosure('"');
         $csv->setHeaderOffset(0); //set the CSV header offset
@@ -31,10 +31,9 @@ class ArmorSeeder extends Seeder
 //        Log::info($records[0]);
 
         foreach ($records as $record) {
-            Armor::create([
+            City::create([
                 "name" => $record["name"],
-                "price" => $record["price"],
-                "defense" => $record["defense"],
+                "region" => $record["region"],
             ]);
         }
     }

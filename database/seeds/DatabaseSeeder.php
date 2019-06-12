@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonSeeder::class);
         $this->call(AnimalSeeder::class);
         $this->call(ArmorSeeder::class);
+        $this->call(CitySeeder::class);
 
         Model::reguard();
     }

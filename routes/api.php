@@ -36,5 +36,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::put('/armors/{armor}', 'ArmorController@update')->name('api.updateArmor');
     Route::delete('/armors/{armor}', 'ArmorController@destroy')->name('api.destroyArmor');
 
+    //city
+    Route::get('/cities', 'CityController@index')->name('api.allCities');
+    Route::get('/cities/{city}', 'CityController@show')->name('api.getCity');
+    Route::post('/cities/store', 'CityController@store')->name('api.storeCity');
+    Route::put('/cities/{city}', 'CityController@update')->name('api.updateCity');
+    Route::delete('/cities/{city}', 'CityController@destroy')->name('api.destroyCity');
 
 });
