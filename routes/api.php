@@ -51,10 +51,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::delete('/creatures/{creature}', 'CreatureController@destroy')->name('api.destroyCreature');
 
     //hero
-    Route::get('/heroes', 'HeroController@index')->name('api.allHeroes');
-    Route::get('/heroes/{hero}', 'HeroController@show')->name('api.getHero');
-    Route::post('/heroes/store', 'HeroController@store')->name('api.storeHero');
-    Route::put('/heroes/{hero}', 'HeroController@update')->name('api.updateHero');
-    Route::delete('/heroes/{hero}', 'HeroController@destroy')->name('api.destroyHero');
+    Route::get('/npcs', 'NpcController@index')->name('api.allNpcs');
+    Route::get('/npcs/{npc}', 'NpcController@show')->name('api.getNpc');
+    Route::post('/npcs/store', 'NpcController@store')->name('api.storeNpc');
+    Route::put('/npcs/{npc}', 'NpcController@update')->name('api.updateNpc');
+    Route::delete('/npcs/{npc}', 'NpcController@destroy')->name('api.destroyNpc');
 
 });
