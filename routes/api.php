@@ -57,4 +57,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::put('/npcs/{npc}', 'NpcController@update')->name('api.updateNpc');
     Route::delete('/npcs/{npc}', 'NpcController@destroy')->name('api.destroyNpc');
 
+    //quest
+    Route::get('/quests', 'QuestController@index')->name('api.allQuests');
+    Route::get('/quests/{quest}', 'QuestController@show')->name('api.getQuest');
+    Route::post('/quests/store', 'QuestController@store')->name('api.storeQuest');
+    Route::put('/quests/{quest}', 'QuestController@update')->name('api.updateQuest');
+    Route::delete('/quests/{quest}', 'QuestController@destroy')->name('api.destroyQuest');
+
 });

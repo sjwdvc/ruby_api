@@ -46,6 +46,5 @@ class PersonSeeder extends Seeder
                 'armor' => $record["armor"],
             ]);
         }
-
     }
 }
