@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Animal;
 use Illuminate\Http\Request;
+use App\Http\Resources\Animal as AnimalResource;
 
 class AnimalController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Animal::all());
+        return AnimalResource::collection(Animal::all());
     }
 
     /**
@@ -30,8 +31,9 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return AnimalResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -43,7 +45,7 @@ class AnimalController extends Controller
             'owner' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new AnimalResource(
             Animal::create([
                 'type' => $request->get("type"),
                 'speed' => $request->get("speed"),
@@ -58,11 +60,11 @@ class AnimalController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
+     * @return AnimalResource
      */
     public function show(Animal $animal)
     {
-        return response()->json($animal);
+        return new AnimalResource($animal);
     }
 
     /**
@@ -79,9 +81,10 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Animal $animal
+     * @return AnimalResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Animal $animal)
     {
@@ -100,7 +103,8 @@ class AnimalController extends Controller
         $animal->owner = $request->get('owner');
 
         $animal->update();
-        return response()->json($animal);
+
+        return new AnimalResource($animal);
     }
 
     /**
