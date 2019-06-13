@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Hero;
 use Illuminate\Http\Request;
+use App\Http\Resources\Hero as HeroResource;
 
 class HeroController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Hero::all());
+        return HeroResource::collection(Hero::all());
     }
 
     /**
@@ -31,7 +32,8 @@ class HeroController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return HeroResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -45,7 +47,7 @@ class HeroController extends Controller
             'person' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new HeroResource(
             Hero::create([
                 'level' => $request->get("level"),
                 'health' => $request->get("health"),
@@ -62,11 +64,11 @@ class HeroController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Hero $hero
-     * @return \Illuminate\Http\Response
+     * @return HeroResource
      */
     public function show(Hero $hero)
     {
-        return response()->json($hero);
+        return new HeroResource($hero);
     }
 
     /**
@@ -85,7 +87,7 @@ class HeroController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Hero $hero
-     * @return \Illuminate\Http\Response
+     * @return HeroResource
      */
     public function update(Request $request, Hero $hero)
     {
@@ -109,7 +111,7 @@ class HeroController extends Controller
 
         $hero->update();
 
-        return response()->json($hero);
+        return new HeroResource($hero);
     }
 
     /**
