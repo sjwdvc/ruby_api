@@ -103,7 +103,6 @@ class QuestController extends Controller
         $quest->update();
 
         return response()->json($quest);
-
     }
 
     /**

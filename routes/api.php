@@ -71,6 +71,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::put('/regions/{region}', 'RegionController@update')->name('api.updateRegion');
     Route::delete('/regions/{region}', 'RegionController@destroy')->name('api.destroyRegion');
 
-
+    //weapon
+    Route::get('/weapons', 'WeaponController@index')->name('api.allWeapons');
+    Route::get('/weapons/{weapon}', 'WeaponController@show')->name('api.getWeapon');
+    Route::post('/weapons/store', 'WeaponController@store')->name('api.storeWeapon');
+    Route::put('/weapons/{weapon}', 'WeaponController@update')->name('api.updateWeapon');
+    Route::delete('/weapons/{weapon}', 'WeaponController@destroy')->name('api.destroyWeapon');
 
 });
