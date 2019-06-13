@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Quest;
 use Illuminate\Http\Request;
+use App\Http\Resources\Quest as QuestResource;
 
 class QuestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Quest::all());
+        return QuestResource::collection(Quest::all());
     }
 
     /**
@@ -31,7 +32,7 @@ class QuestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return QuestResource
      */
     public function store(Request $request)
     {
@@ -43,7 +44,7 @@ class QuestController extends Controller
             'holder' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new QuestResource(
             Quest::create([
                 'title' => $request->get("title"),
                 'experience' => $request->get("experience"),
@@ -59,11 +60,11 @@ class QuestController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Quest  $quest
-     * @return \Illuminate\Http\Response
+     * @return QuestResource
      */
     public function show(Quest $quest)
     {
-        return response()->json($quest);
+        return new QuestResource($quest);
     }
 
     /**
@@ -80,9 +81,10 @@ class QuestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Quest  $quest
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Quest $quest
+     * @return QuestResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Quest $quest)
     {
@@ -102,7 +104,7 @@ class QuestController extends Controller
 
         $quest->update();
 
-        return response()->json($quest);
+        return new QuestResource($quest);
     }
 
     /**

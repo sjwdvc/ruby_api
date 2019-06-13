@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Weapon;
 use Illuminate\Http\Request;
+use App\Http\Resources\Weapon as WeaponResource;
 
 class WeaponController extends Controller
 {
@@ -14,7 +15,7 @@ class WeaponController extends Controller
      */
     public function index()
     {
-        return response()->json(Weapon::all());
+        return WeaponResource::collection(Weapon::all());
     }
 
     /**
@@ -30,8 +31,9 @@ class WeaponController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return WeaponResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -41,7 +43,7 @@ class WeaponController extends Controller
             'attack' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new WeaponResource(
             Weapon::create([
                 'name' => $request->get("name"),
                 'price' => $request->get("price"),
@@ -54,11 +56,11 @@ class WeaponController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Weapon  $weapon
-     * @return \Illuminate\Http\Response
+     * @return WeaponResource
      */
     public function show(Weapon $weapon)
     {
-        return response()->json($weapon);
+        return new WeaponResource($weapon);
     }
 
     /**
@@ -75,9 +77,10 @@ class WeaponController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Weapon  $weapon
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Weapon $weapon
+     * @return WeaponResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Weapon $weapon)
     {
@@ -93,7 +96,7 @@ class WeaponController extends Controller
 
         $weapon->update();
 
-        return response()->json($weapon);
+        return new WeaponResource($weapon);
     }
 
     /**

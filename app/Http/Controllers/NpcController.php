@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Npc;
 use Illuminate\Http\Request;
+use App\Http\Resources\Npc as NpcResource;
 
 class NpcController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Npc::all());
+        return NpcResource::collection(Npc::all());
     }
 
     /**
@@ -31,7 +32,7 @@ class NpcController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return NpcResource
      */
     public function store(Request $request)
     {
@@ -42,7 +43,7 @@ class NpcController extends Controller
             'person' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new NpcResource(
             Npc::create([
                 'health' => $request->get("health"),
                 'profession' => $request->get("profession"),
@@ -56,11 +57,11 @@ class NpcController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Npc  $npc
-     * @return \Illuminate\Http\Response
+     * @return NpcResource
      */
     public function show(Npc $npc)
     {
-        return response()->json($npc);
+        return new NpcResource($npc);
     }
 
     /**
@@ -77,9 +78,10 @@ class NpcController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Npc  $npc
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Npc $npc
+     * @return NpcResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Npc $npc)
     {
@@ -97,7 +99,7 @@ class NpcController extends Controller
 
         $npc->update();
 
-        return response()->json($npc);
+        return new NpcResource($npc);
     }
 
     /**

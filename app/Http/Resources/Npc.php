@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Hero extends JsonResource
+class Npc extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,9 @@ class Hero extends JsonResource
     {
         return [
             'id' => $this->id,
-            'level' => $this->level,
             'health' => $this->health,
-            'stamina' => $this->stamine,
-            'intelligence' => $this->intelligence,
-            'charisma' => $this->charisma,
-            'resilience' => $this->resilience,
+            'profession' => $this->profession,
+            'city' => $this->city,
             'person' => $this->person,
         ];
     }
