@@ -64,4 +64,13 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::put('/quests/{quest}', 'QuestController@update')->name('api.updateQuest');
     Route::delete('/quests/{quest}', 'QuestController@destroy')->name('api.destroyQuest');
 
+    //region
+    Route::get('/regions', 'RegionController@index')->name('api.allRegion');
+    Route::get('/regions/{region}', 'RegionController@show')->name('api.getRegion');
+    Route::post('/regions/store', 'RegionController@store')->name('api.storeRegion');
+    Route::put('/regions/{region}', 'RegionController@update')->name('api.updateRegion');
+    Route::delete('/regions/{region}', 'RegionController@destroy')->name('api.destroyRegion');
+
+
+
 });
