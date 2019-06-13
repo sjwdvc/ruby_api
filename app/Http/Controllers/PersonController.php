@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Person;
 use Illuminate\Http\Request;
+use App\Http\Resources\Person as PersonResource;
+
 
 class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Person::all());
+        return PersonResource::collection(Person::all());
     }
 
     /**
@@ -30,8 +32,9 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return PersonResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -48,7 +51,7 @@ class PersonController extends Controller
             'armor' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new PersonResource(
             Person::create([
                 'name' => $request->get("name"),
                 'sex' => $request->get("sex"),
@@ -68,11 +71,11 @@ class PersonController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Person  $person
-     * @return \Illuminate\Http\Response
+     * @return PersonResource
      */
     public function show(Person $person)
     {
-        return response()->json($person);
+        return new PersonResource($person);
     }
 
     /**
@@ -89,9 +92,10 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Person  $person
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Person $person
+     * @return PersonResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Person $person)
     {
@@ -121,7 +125,7 @@ class PersonController extends Controller
 
         $person->update();
 
-        return response()->json($person);
+        return new PersonResource($person);
     }
 
     /**
