@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Region as RegionResource;
 use App\Region;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,11 @@ class RegionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Region::all());
+        return RegionResource::collection(Region::all());
     }
 
     /**
@@ -30,8 +31,9 @@ class RegionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return RegionResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -40,7 +42,7 @@ class RegionController extends Controller
             'holder' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new RegionResource(
             Region::create([
                 'name' => $request->get("name"),
                 'holder' => $request->get("holder"),
@@ -52,11 +54,11 @@ class RegionController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Region  $region
-     * @return \Illuminate\Http\Response
+     * @return RegionResource
      */
     public function show(Region $region)
     {
-        return response()->json($region);
+        return new RegionResource($region);
     }
 
     /**
@@ -73,9 +75,10 @@ class RegionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Region  $region
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Region $region
+     * @return RegionResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Region $region)
     {
@@ -89,7 +92,7 @@ class RegionController extends Controller
 
         $region->update();
 
-        return response()->json($region);
+        return new RegionResource($region);
     }
 
     /**
