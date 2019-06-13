@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\City as CityResource;
 use App\City;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,13 @@ class CityController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(City::all());
+//        return response()->json(City::all());
+        return CityResource::collection(City::all());
+
     }
 
     /**
@@ -32,6 +35,7 @@ class CityController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -52,11 +56,11 @@ class CityController extends Controller
      * Display the specified resource.
      *
      * @param  \App\City $city
-     * @return \Illuminate\Http\Response
+     * @return CityResource
      */
     public function show(City $city)
     {
-        return response()->json($city);
+        return new CityResource($city);
     }
 
     /**
@@ -75,7 +79,7 @@ class CityController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\City $city
-     * @return \Illuminate\Http\Response
+     * @return CityResource
      */
     public function update(Request $request, City $city)
     {
@@ -89,7 +93,7 @@ class CityController extends Controller
 
         $city->update();
 
-        return response()->json($city);
+        return new CityResource($city);
     }
 
     /**
