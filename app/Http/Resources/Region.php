@@ -18,7 +18,7 @@ class Region extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'holder' => $this->holder,
-            'cities' => $this->cities,
+//            'cities' => $this->cities,
         ];
     }
 }

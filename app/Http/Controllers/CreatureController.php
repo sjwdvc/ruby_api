@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Creature;
 use Illuminate\Http\Request;
+use App\Http\Resources\Creature as CreatureResource;
 
 class CreatureController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Creature::all());
+        return CreatureResource::collection(Creature::all());
     }
 
     /**
@@ -31,7 +32,7 @@ class CreatureController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return CreatureResource
      */
     public function store(Request $request)
     {
@@ -46,7 +47,7 @@ class CreatureController extends Controller
             'spawn' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new CreatureResource(
             Creature::create([
                 'id' => $request->get("id"),
                 'name' => $request->get("name"),
@@ -65,11 +66,11 @@ class CreatureController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Creature  $creature
-     * @return \Illuminate\Http\Response
+     * @return CreatureResource
      */
     public function show(Creature $creature)
     {
-        return response()->json($creature);
+        return new CreatureResource($creature);
     }
 
     /**
@@ -88,7 +89,7 @@ class CreatureController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Creature  $creature
-     * @return \Illuminate\Http\Response
+     * @return CreatureResource
      */
     public function update(Request $request, Creature $creature)
     {
@@ -113,7 +114,8 @@ class CreatureController extends Controller
         $creature->spawn = $request->get('spawn');
 
         $creature->update();
-        return response()->json($creature);
+
+        return new CreatureResource($creature);
     }
 
     /**

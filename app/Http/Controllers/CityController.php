@@ -34,7 +34,7 @@ class CityController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return CityResource
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class CityController extends Controller
             'region' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new CityResource(
             City::create([
                 'name' => $request->get("name"),
                 'region' => $request->get("region"),
