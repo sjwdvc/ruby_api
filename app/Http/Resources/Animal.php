@@ -15,6 +15,7 @@ class Animal extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'type' => $this->type,
             'speed' => $this->speed,
             'defense' => $this->defense,

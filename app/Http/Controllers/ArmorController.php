@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Armor;
 use Illuminate\Http\Request;
+use App\Http\Resources\Armor as ArmorResource;
 
 class ArmorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return response()->json(Armor::all());
+        return ArmorResource::collection(Armor::all());
     }
 
     /**
@@ -31,7 +32,7 @@ class ArmorController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return ArmorResource
      */
     public function store(Request $request)
     {
@@ -41,7 +42,7 @@ class ArmorController extends Controller
             'defense' => 'required|integer',
         ]);
 
-        return response()->json(
+        return new ArmorResource(
             Armor::create([
                 'name' => $request->get("name"),
                 'price' => $request->get("price"),
@@ -54,11 +55,11 @@ class ArmorController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Armor  $armor
-     * @return \Illuminate\Http\Response
+     * @return ArmorResource
      */
     public function show(Armor $armor)
     {
-        return response()->json($armor);
+        return new ArmorResource($armor);
     }
 
     /**
@@ -77,7 +78,7 @@ class ArmorController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Armor  $armor
-     * @return \Illuminate\Http\Response
+     * @return ArmorResource
      */
     public function update(Request $request, Armor $armor)
     {
@@ -93,7 +94,7 @@ class ArmorController extends Controller
 
         $armor->update();
 
-        return response()->json($armor);
+        return new ArmorResource($armor);
     }
 
     /**
