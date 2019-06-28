@@ -5,7 +5,7 @@ namespace App;
 
 class Armor extends Model
 {
-    public function person(){
-        return $this->hasOne(Person::class, 'armor');
+    public function people(){
+        return $this->hasMany(Person::class, 'armor');
     }
 }
