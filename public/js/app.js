@@ -65628,7 +65628,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
-/* harmony import */ var _PersonList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PersonList */ "./resources/js/components/PersonList.js");
+/* harmony import */ var _Highscore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Highscore */ "./resources/js/components/Highscore.js");
+/* harmony import */ var _SingleHero__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SingleHero */ "./resources/js/components/SingleHero.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65653,6 +65654,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_Component) {
@@ -65670,7 +65672,11 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/",
-        component: _PersonList__WEBPACK_IMPORTED_MODULE_4__["default"]
+        component: _Highscore__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/heroes/:id",
+        component: _SingleHero__WEBPACK_IMPORTED_MODULE_5__["default"]
       }))));
     }
   }]);
@@ -65712,9 +65718,110 @@ var Header = function Header() {
 
 /***/ }),
 
-/***/ "./resources/js/components/PersonList.js":
+/***/ "./resources/js/components/Highscore.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Highscore.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Highscore =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Highscore, _Component);
+
+  function Highscore() {
+    var _this;
+
+    _classCallCheck(this, Highscore);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Highscore).call(this));
+    _this.state = {
+      heroes: []
+    };
+    return _this;
+  }
+
+  _createClass(Highscore, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/highscore').then(function (response) {
+        _this2.setState({
+          heroes: response.data.data
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var heroes = this.state.heroes;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "container py-4"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "row justify-content-center"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "col-md-8"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header"
+      }, "Highscores"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+        className: "list-group list-group-flush"
+      }, heroes.map(function (hero) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
+          to: "/heroes/".concat(hero.id),
+          key: hero.id
+        }, hero.person.name, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          className: "badge"
+        }, "Lv.", hero.level));
+      })))))));
+    }
+  }]);
+
+  return Highscore;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Highscore);
+
+/***/ }),
+
+/***/ "./resources/js/components/SingleHero.js":
 /*!***********************************************!*\
-  !*** ./resources/js/components/PersonList.js ***!
+  !*** ./resources/js/components/SingleHero.js ***!
   \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -65748,38 +65855,43 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var PersonList =
+var SingleHero =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(PersonList, _Component);
+  _inherits(SingleHero, _Component);
 
-  function PersonList() {
+  function SingleHero() {
     var _this;
 
-    _classCallCheck(this, PersonList);
+    _classCallCheck(this, SingleHero);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PersonList).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SingleHero).call(this));
     _this.state = {
-      people: []
+      hero: {},
+      person: {}
     };
     return _this;
   }
 
-  _createClass(PersonList, [{
+  _createClass(SingleHero, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/v1/people').then(function (response) {
+      var heroId = this.props.match.params.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/v1/heroeswithperson/".concat(heroId)).then(function (response) {
         _this2.setState({
-          people: response.data.data
+          hero: response.data.data,
+          person: response.data.data.person
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var people = this.state.people;
+      var _this$state = this.state,
+          heroes = _this$state.heroes,
+          person = _this$state.person;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "container py-4"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -65790,29 +65902,16 @@ function (_Component) {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-header"
-      }, "All people"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, person.name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-body"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        className: "btn btn-primary btn-sm mb-3",
-        to: "/create"
-      }, "Create new person"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group list-group-flush"
-      }, people.map(function (person) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-          to: "/".concat(person.id),
-          key: person.id
-        }, person.name, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "badge badge-primary badge-pill"
-        }, person.sex));
-      })))))));
+      }, "sex: ", person.sex)))));
     }
   }]);
 
-  return PersonList;
+  return SingleHero;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (PersonList);
+/* harmony default export */ __webpack_exports__["default"] = (SingleHero);
 
 /***/ }),
 

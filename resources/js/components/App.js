@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Header from './Header'
-import PersonList from './PersonList'
+import Highscore from './Highscore'
+import SingleHero from './SingleHero'
 
 class App extends Component {
-    render () {
+    render() {
         return (
             <BrowserRouter>
                 <div>
-                    <Header />
+                    <Header/>
                     <Switch>
-                        <Route exact path='/' component={PersonList} />
+                        <Route exact path='/' component={Highscore}/>
+                        <Route exact path='/heroes/:id' component={SingleHero}/>
                     </Switch>
                 </div>
             </BrowserRouter>
@@ -19,4 +21,4 @@ class App extends Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))
