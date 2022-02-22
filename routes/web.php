@@ -13,4 +13,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'PersonController@index')->name('index');
+Route::view('/{path?}', 'app');

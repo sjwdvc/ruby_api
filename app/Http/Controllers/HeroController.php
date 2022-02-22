@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Hero;
 use Illuminate\Http\Request;
 use App\Http\Resources\Hero as HeroResource;
+use App\Http\Resources\WithRelations\HeroWithUser as HeroWithUserResource;
+
 
 class HeroController extends Controller
 {
@@ -124,5 +126,12 @@ class HeroController extends Controller
     {
         Hero::destroy($hero->id);
         return response()->json(["message" => "Hero succesvol verwijderd"]);
+    }
+
+    public function highscore(){
+        return HeroWithUserResource::collection(Hero::orderBy('level')->get());
+    }
+    public function heroesWithPerson($id){
+        return new HeroWithUserResource(Hero::find($id));
     }
 }

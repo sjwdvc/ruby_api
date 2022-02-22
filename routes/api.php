@@ -56,6 +56,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
     Route::post('/heroes/store', 'HeroController@store')->name('api.storeHero');
     Route::put('/heroes/{hero}', 'HeroController@update')->name('api.updateHero');
     Route::delete('/heroes/{hero}', 'HeroController@destroy')->name('api.destroyHero');
+    Route::get('/highscore', 'HeroController@highscore')->name('api.highscores');
+    Route::get('/heroeswithperson/{hero}', 'HeroController@heroesWithPerson')->name('api.heroesWithPerson');
 
     //npc
     Route::get('/npcs', 'NpcController@index')->name('api.allNpcs');
