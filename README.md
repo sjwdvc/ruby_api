@@ -26,4 +26,4 @@ Volg de volgende stappen
     1.	Als je een webpapgina met JSON-objecten te zien krijgt, dan is je API succesvol ingesteld. 
     2.	De webpagina zou er alsvolgt uit moeten zien:
 
-![The website, after the API has been setup correctly](/assets/images/API_response.png)
+![The website, after the API has been setup correctly](/readme/API_response.png)
