@@ -27,14 +27,33 @@ class SingleHero extends Component {
             <div className='container py-4'>
                 <div className='row justify-content-center'>
                     <div className='col-md-8'>
-                        <div className='card'>
-                            <div className='card-header'>{person.name}</div>
-                            <div className='card-body'>
-                                
-                                {/*<Link className='btn btn-primary btn-sm mb-3' to='/create'>*/}
-                                {/*Create new person*/}
-                                {/*</Link>*/}
-                                sex: {person.sex}
+                        <div className="block">
+                            <ul className="nav nav-tabs nav-tabs-alt nav-justified" data-toggle="tabs">
+                                <li className="active">
+                                    <a href="#btabs-alt-static-justified-home"><i className="fa fa-home"></i> Home</a>
+                                </li>
+                                <li className="">
+                                    <a href="#btabs-alt-static-justified-profile"><i
+                                        className="fa fa-pencil"></i> Profile</a>
+                                </li>
+                                <li className="">
+                                    <a href="#btabs-alt-static-justified-settings"><i
+                                        className="fa fa-cog"></i> Settings</a>
+                                </li>
+                            </ul>
+                            <div className="block-content tab-content">
+                                <div className="tab-pane active" id="btabs-alt-static-justified-home">
+                                    <h4 className="font-w300 push-15">Home Tab</h4>
+                                    <p>...</p>
+                                </div>
+                                <div className="tab-pane" id="btabs-alt-static-justified-profile">
+                                    <h4 className="font-w300 push-15">Profile Tab</h4>
+                                    <p>...</p>
+                                </div>
+                                <div className="tab-pane" id="btabs-alt-static-justified-settings">
+                                    <h4 className="font-w300 push-15">Settings Tab</h4>
+                                    <p>...</p>
+                                </div>
                             </div>
                         </div>
                     </div>

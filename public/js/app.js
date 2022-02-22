@@ -65899,12 +65899,46 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-md-8"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card"
+        className: "block"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+        className: "nav nav-tabs nav-tabs-alt nav-justified",
+        "data-toggle": "tabs"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: "active"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        href: "#btabs-alt-static-justified-home"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "fa fa-home"
+      }), " Home")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: ""
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        href: "#btabs-alt-static-justified-profile"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "fa fa-pencil"
+      }), " Profile")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: ""
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        href: "#btabs-alt-static-justified-settings"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "fa fa-cog"
+      }), " Settings"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "block-content tab-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header"
-      }, person.name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-body"
-      }, "sex: ", person.sex)))));
+        className: "tab-pane active",
+        id: "btabs-alt-static-justified-home"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+        className: "font-w300 push-15"
+      }, "Home Tab"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "tab-pane",
+        id: "btabs-alt-static-justified-profile"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+        className: "font-w300 push-15"
+      }, "Profile Tab"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "...")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "tab-pane",
+        id: "btabs-alt-static-justified-settings"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+        className: "font-w300 push-15"
+      }, "Settings Tab"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "...")))))));
     }
   }]);
 

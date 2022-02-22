@@ -18,7 +18,7 @@ class HeroWithUser extends JsonResource
             'id' => $this->id,
             'level' => $this->level,
             'health' => $this->health,
-            'stamina' => $this->stamine,
+            'stamina' => $this->stamina,
             'intelligence' => $this->intelligence,
             'charisma' => $this->charisma,
             'resilience' => $this->resilience,
