@@ -37,7 +37,7 @@ services:
 
   #MySQL Service
   db:
-    image: mysql:5.7.22
+    image: mariadb:10.7
     container_name: mariadb
     restart: unless-stopped
     tty: true
@@ -49,8 +49,9 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
-      - dbdata:/var/lib/mysql/
+#      - dbdata:/var/lib/mysql/
       - ./docker-stacks/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./ruby_quest.sql:/docker-entrypoint-initdb.d/AppDatabase.sql
     networks:
       - app-network
 

@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `ruby_quest`
 --
-
 -- --------------------------------------------------------
-CREATE DATABASE ruby_quest;
 --
 -- Table structure for table `animals`
 --
