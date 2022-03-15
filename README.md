@@ -93,7 +93,17 @@ Een voorbeeld: `api/v1/animals/{animal}` zul je moeten vervangen door `api/v1/an
 
 
 ## POST requests
-Sommige Requests zullen extra gegevens nodig hebben om goed te werken. Wanneer je bijvoorbeeld een nieuw armor toe wilt voegen met de route `api/v1/armors/store`, zul je de informatie over de armor moeten mee sturen in de `body` van de `POST` request. De body zal JSON  
+Sommige Requests zullen extra gegevens nodig hebben om goed te werken. Wanneer je bijvoorbeeld een nieuw armor toe wilt voegen met de route `api/v1/armors/store`, zul je de informatie over de armor moeten mee sturen in de `body` van de `POST` request. De body zal JSON object zijn met als keys de properties van de resource, en als values de waarde die je mee wilt sturen. 
+
+Voorbeeld: 
+`"body": {
+        "id": 24,
+        "name": "Bandos",
+        "price": "5000",
+        "defense": "30"
+    }`
+    
+Om erachter te komen welke keys minimaal nodig zijn, kun je in meeste gevallen een `GET` request doen op de resource. In de response kun je lezen welke keys er allemaal bestaan per resource. 
 
 ## Resfresh je database
 Wanneer je een tijd bezig bent met dezelfde dataset kan het zijn dat je de database zou willen refreshen en alle originele data weer terug zou willen halen. 
