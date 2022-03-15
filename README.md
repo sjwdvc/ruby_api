@@ -31,7 +31,7 @@ Werk dus netjes!
 
 ## Route list
 Hieronder zie je een tabel met de mogelijke routes/endpoints die beschikbaar zijn op de API. 
-Begin je URL altijd met `localhost:8000` en plak vervolgens het stukje onder het kopje `URI`, uit de tabel hieronder, erachter*. 
+Begin je URL altijd met `localhost:8000/` en plak vervolgens het stukje onder het kopje `URI`, uit de tabel hieronder, erachter*. 
 *wanneer er een `{}` voorkomen in de `URI` zul je op die plek een `id` van de desbetreffende resource moeten invullen. 
 
 Een voorbeeld: `api/v1/animals/{animal}` zul je moeten vervangen door `api/v1/animals/3`. Dit zal je alle informatie van een `animal` met `id` 3 teruggeven.
@@ -90,6 +90,10 @@ Een voorbeeld: `api/v1/animals/{animal}` zul je moeten vervangen door `api/v1/an
 | GET/HEAD | api/v1/weapons/{weapon}        | api.getWeapon        | App\Http\Controllers\WeaponController@show           | api        |
 | PUT      | api/v1/weapons/{weapon}        | api.updateWeapon     | App\Http\Controllers\WeaponController@update         | api        |
 | DELETE   | api/v1/weapons/{weapon}        | api.destroyWeapon    | App\Http\Controllers\WeaponController@destroy        | api        |
+
+
+## POST requests
+Sommige Requests zullen extra gegevens nodig hebben om goed te werken. Wanneer je bijvoorbeeld een nieuw armor toe wilt voegen met de route `api/v1/armors/store`, zul je de informatie over de armor moeten mee sturen in de `body` van de `POST` request. De body zal JSON  
 
 ## Resfresh je database
 Wanneer je een tijd bezig bent met dezelfde dataset kan het zijn dat je de database zou willen refreshen en alle originele data weer terug zou willen halen. 
