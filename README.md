@@ -8,12 +8,12 @@ Werk dus netjes!
 ## Volg de volgende stappen
 1.	Installeer Docker Desktop voor jouw besturingssysteem. 
     1.	Link: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
-2.	Clone de repository op een goede, makkelijk te vinden plek op je computer: https://github.com/sjwdvc/ruby_api 
+2.	Clone de repository op een goede, makkelijk te vinden plek op je computer: `https://github.com/sjwdvc/ruby_api`
     1.	Je kunt ook een zipje downloaden van de repository. 
 3.	Kopieer het bestand `.env.example` en geef het de naam `.env` (let op de punt “.”) voor het woordje env.
 4.	Open een terminal/command prompt
 5.	Navigeer in de terminal naar de map waar je de repository hebt gecloned/gedownload en uitgepakt!
-6.	Navigeer in de terminal naar de map genaamd “ruby_api” (als je het zipje hebt gedownloaad zal de naam zijn “ruby_api-master) (deze staat in de repository die je hebt gecloned/gedownload
+6.	Navigeer in de terminal naar de map genaamd `ruby_api` (als je het zipje hebt gedownload zal de naam zijn `ruby_api-master`) (deze staat in de repository die je hebt gecloned/gedownload
 7.	Voer hetvolgende commando uit:
     1.	`docker-compose up -d`
     2.	De terminal gaat nu heel hard voor je aan de slag, dit kan een paar minuten duren! Het is belangrijk dat je hem rustig zijn ding laat doen. Hij zet nu alles op wat je nodig zult hebben voor de ruby quest API. 
