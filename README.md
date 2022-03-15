@@ -31,64 +31,65 @@ Werk dus netjes!
 
 ## Route list
 Hieronder zie je een tabel met de mogelijke routes/endpoints die beschikbaar zijn op de API. 
-Begin je URL altijd met `localhost:8000` en plak vervolgens het stukje onder het kopje `URI`, uit de tabel hieronder, erachter.
+Begin je URL altijd met `localhost:8000` en plak vervolgens het stukje onder het kopje `URI`, uit de tabel hieronder, erachter*. 
+*wanneer er een `{}` voorkomen in de `URI` zul je op die plek een `id` van de desbetreffende resource moeten invullen. 
 
-+--------+----------+--------------------------------+----------------------+------------------------------------------------------+------------+
-| Domain | Method   | URI                            | Name                 | Action                                               | Middleware |
-+--------+----------+--------------------------------+----------------------+------------------------------------------------------+------------+
-|        | GET|HEAD | api/v1/animals                 | api.allAnimals       | App\Http\Controllers\AnimalController@index          | api        |
-|        | POST     | api/v1/animals/store           | api.storeAnimal      | App\Http\Controllers\AnimalController@store          | api        |
-|        | GET|HEAD | api/v1/animals/{animal}        | api.getAnimal        | App\Http\Controllers\AnimalController@show           | api        |
-|        | PUT      | api/v1/animals/{animal}        | api.updateAnimal     | App\Http\Controllers\AnimalController@update         | api        |
-|        | DELETE   | api/v1/animals/{animal}        | api.destroyAnimal    | App\Http\Controllers\AnimalController@destroy        | api        |
-|        | GET|HEAD | api/v1/armors                  | api.allArmors        | App\Http\Controllers\ArmorController@index           | api        |
-|        | POST     | api/v1/armors/store            | api.storeArmor       | App\Http\Controllers\ArmorController@store           | api        |
-|        | DELETE   | api/v1/armors/{armor}          | api.destroyArmor     | App\Http\Controllers\ArmorController@destroy         | api        |
-|        | GET|HEAD | api/v1/armors/{armor}          | api.getArmor         | App\Http\Controllers\ArmorController@show            | api        |
-|        | PUT      | api/v1/armors/{armor}          | api.updateArmor      | App\Http\Controllers\ArmorController@update          | api        |
-|        | GET|HEAD | api/v1/cities                  | api.allCities        | App\Http\Controllers\CityController@index            | api        |
-|        | POST     | api/v1/cities/store            | api.storeCity        | App\Http\Controllers\CityController@store            | api        |
-|        | DELETE   | api/v1/cities/{city}           | api.destroyCity      | App\Http\Controllers\CityController@destroy          | api        |
-|        | PUT      | api/v1/cities/{city}           | api.updateCity       | App\Http\Controllers\CityController@update           | api        |
-|        | GET|HEAD | api/v1/cities/{city}           | api.getCity          | App\Http\Controllers\CityController@show             | api        |
-|        | GET|HEAD | api/v1/creatures               | api.allCreatures     | App\Http\Controllers\CreatureController@index        | api        |
-|        | POST     | api/v1/creatures/store         | api.storeCreature    | App\Http\Controllers\CreatureController@store        | api        |
-|        | DELETE   | api/v1/creatures/{creature}    | api.destroyCreature  | App\Http\Controllers\CreatureController@destroy      | api        |
-|        | GET|HEAD | api/v1/creatures/{creature}    | api.getCreature      | App\Http\Controllers\CreatureController@show         | api        |
-|        | PUT      | api/v1/creatures/{creature}    | api.updateCreature   | App\Http\Controllers\CreatureController@update       | api        |
-|        | GET|HEAD | api/v1/heroes                  | api.allHeroes        | App\Http\Controllers\HeroController@index            | api        |
-|        | POST     | api/v1/heroes/store            | api.storeHero        | App\Http\Controllers\HeroController@store            | api        |
-|        | PUT      | api/v1/heroes/{hero}           | api.updateHero       | App\Http\Controllers\HeroController@update           | api        |
-|        | DELETE   | api/v1/heroes/{hero}           | api.destroyHero      | App\Http\Controllers\HeroController@destroy          | api        |
-|        | GET|HEAD | api/v1/heroes/{hero}           | api.getHero          | App\Http\Controllers\HeroController@show             | api        |
-|        | GET|HEAD | api/v1/heroeswithperson/{hero} | api.heroesWithPerson | App\Http\Controllers\HeroController@heroesWithPerson | api        |
-|        | GET|HEAD | api/v1/highscore               | api.highscores       | App\Http\Controllers\HeroController@highscore        | api        |
-|        | GET|HEAD | api/v1/npcs                    | api.allNpcs          | App\Http\Controllers\NpcController@index             | api        |
-|        | POST     | api/v1/npcs/store              | api.storeNpc         | App\Http\Controllers\NpcController@store             | api        |
-|        | GET|HEAD | api/v1/npcs/{npc}              | api.getNpc           | App\Http\Controllers\NpcController@show              | api        |
-|        | PUT      | api/v1/npcs/{npc}              | api.updateNpc        | App\Http\Controllers\NpcController@update            | api        |
-|        | DELETE   | api/v1/npcs/{npc}              | api.destroyNpc       | App\Http\Controllers\NpcController@destroy           | api        |
-|        | GET|HEAD | api/v1/people                  | api.getPeople        | App\Http\Controllers\PersonController@index          | api        |
-|        | POST     | api/v1/people/store            | api.storePerson      | App\Http\Controllers\PersonController@store          | api        |
-|        | GET|HEAD | api/v1/people/{person}         | api.getPerson        | App\Http\Controllers\PersonController@show           | api        |
-|        | PUT      | api/v1/people/{person}         | api.updatePerson     | App\Http\Controllers\PersonController@update         | api        |
-|        | DELETE   | api/v1/people/{person}         | api.destroyPerson    | App\Http\Controllers\PersonController@destroy        | api        |
-|        | GET|HEAD | api/v1/quests                  | api.allQuests        | App\Http\Controllers\QuestController@index           | api        |
-|        | POST     | api/v1/quests/store            | api.storeQuest       | App\Http\Controllers\QuestController@store           | api        |
-|        | GET|HEAD | api/v1/quests/{quest}          | api.getQuest         | App\Http\Controllers\QuestController@show            | api        |
-|        | PUT      | api/v1/quests/{quest}          | api.updateQuest      | App\Http\Controllers\QuestController@update          | api        |
-|        | DELETE   | api/v1/quests/{quest}          | api.destroyQuest     | App\Http\Controllers\QuestController@destroy         | api        |
-|        | GET|HEAD | api/v1/regions                 | api.allRegion        | App\Http\Controllers\RegionController@index          | api        |
-|        | POST     | api/v1/regions/store           | api.storeRegion      | App\Http\Controllers\RegionController@store          | api        |
-|        | DELETE   | api/v1/regions/{region}        | api.destroyRegion    | App\Http\Controllers\RegionController@destroy        | api        |
-|        | GET|HEAD | api/v1/regions/{region}        | api.getRegion        | App\Http\Controllers\RegionController@show           | api        |
-|        | PUT      | api/v1/regions/{region}        | api.updateRegion     | App\Http\Controllers\RegionController@update         | api        |
-|        | GET|HEAD | api/v1/weapons                 | api.allWeapons       | App\Http\Controllers\WeaponController@index          | api        |
-|        | POST     | api/v1/weapons/store           | api.storeWeapon      | App\Http\Controllers\WeaponController@store          | api        |
-|        | GET|HEAD | api/v1/weapons/{weapon}        | api.getWeapon        | App\Http\Controllers\WeaponController@show           | api        |
-|        | PUT      | api/v1/weapons/{weapon}        | api.updateWeapon     | App\Http\Controllers\WeaponController@update         | api        |
-|        | DELETE   | api/v1/weapons/{weapon}        | api.destroyWeapon    | App\Http\Controllers\WeaponController@destroy        | api        |
-+--------+----------+--------------------------------+----------------------+------------------------------------------------------+------------+
+Een voorbeeld: `api/v1/animals/{animal}` zul je moeten vervangen door `api/v1/animals/3`. Dit zal je alle informatie van een `animal` met `id` 3 teruggeven.
+
+| method   | uri                            | name                 | action                                               | middleware |
+| -------- | ------------------------------ | -------------------- | ---------------------------------------------------- | ---------- |
+| GET/HEAD | api/v1/animals                 | api.allAnimals       | App\Http\Controllers\AnimalController@index          | api        |
+| POST     | api/v1/animals/store           | api.storeAnimal      | App\Http\Controllers\AnimalController@store          | api        |
+| GET/HEAD | api/v1/animals/{animal}        | api.getAnimal        | App\Http\Controllers\AnimalController@show           | api        |
+| PUT      | api/v1/animals/{animal}        | api.updateAnimal     | App\Http\Controllers\AnimalController@update         | api        |
+| DELETE   | api/v1/animals/{animal}        | api.destroyAnimal    | App\Http\Controllers\AnimalController@destroy        | api        |
+| GET/HEAD | api/v1/armors                  | api.allArmors        | App\Http\Controllers\ArmorController@index           | api        |
+| POST     | api/v1/armors/store            | api.storeArmor       | App\Http\Controllers\ArmorController@store           | api        |
+| DELETE   | api/v1/armors/{armor}          | api.destroyArmor     | App\Http\Controllers\ArmorController@destroy         | api        |
+| GET/HEAD | api/v1/armors/{armor}          | api.getArmor         | App\Http\Controllers\ArmorController@show            | api        |
+| PUT      | api/v1/armors/{armor}          | api.updateArmor      | App\Http\Controllers\ArmorController@update          | api        |
+| GET/HEAD | api/v1/cities                  | api.allCities        | App\Http\Controllers\CityController@index            | api        |
+| POST     | api/v1/cities/store            | api.storeCity        | App\Http\Controllers\CityController@store            | api        |
+| DELETE   | api/v1/cities/{city}           | api.destroyCity      | App\Http\Controllers\CityController@destroy          | api        |
+| PUT      | api/v1/cities/{city}           | api.updateCity       | App\Http\Controllers\CityController@update           | api        |
+| GET/HEAD | api/v1/cities/{city}           | api.getCity          | App\Http\Controllers\CityController@show             | api        |
+| GET/HEAD | api/v1/creatures               | api.allCreatures     | App\Http\Controllers\CreatureController@index        | api        |
+| POST     | api/v1/creatures/store         | api.storeCreature    | App\Http\Controllers\CreatureController@store        | api        |
+| DELETE   | api/v1/creatures/{creature}    | api.destroyCreature  | App\Http\Controllers\CreatureController@destroy      | api        |
+| GET/HEAD | api/v1/creatures/{creature}    | api.getCreature      | App\Http\Controllers\CreatureController@show         | api        |
+| PUT      | api/v1/creatures/{creature}    | api.updateCreature   | App\Http\Controllers\CreatureController@update       | api        |
+| GET/HEAD | api/v1/heroes                  | api.allHeroes        | App\Http\Controllers\HeroController@index            | api        |
+| POST     | api/v1/heroes/store            | api.storeHero        | App\Http\Controllers\HeroController@store            | api        |
+| PUT      | api/v1/heroes/{hero}           | api.updateHero       | App\Http\Controllers\HeroController@update           | api        |
+| DELETE   | api/v1/heroes/{hero}           | api.destroyHero      | App\Http\Controllers\HeroController@destroy          | api        |
+| GET/HEAD | api/v1/heroes/{hero}           | api.getHero          | App\Http\Controllers\HeroController@show             | api        |
+| GET/HEAD | api/v1/heroeswithperson/{hero} | api.heroesWithPerson | App\Http\Controllers\HeroController@heroesWithPerson | api        |
+| GET/HEAD | api/v1/highscore               | api.highscores       | App\Http\Controllers\HeroController@highscore        | api        |
+| GET/HEAD | api/v1/npcs                    | api.allNpcs          | App\Http\Controllers\NpcController@index             | api        |
+| POST     | api/v1/npcs/store              | api.storeNpc         | App\Http\Controllers\NpcController@store             | api        |
+| GET/HEAD | api/v1/npcs/{npc}              | api.getNpc           | App\Http\Controllers\NpcController@show              | api        |
+| PUT      | api/v1/npcs/{npc}              | api.updateNpc        | App\Http\Controllers\NpcController@update            | api        |
+| DELETE   | api/v1/npcs/{npc}              | api.destroyNpc       | App\Http\Controllers\NpcController@destroy           | api        |
+| GET/HEAD | api/v1/people                  | api.getPeople        | App\Http\Controllers\PersonController@index          | api        |
+| POST     | api/v1/people/store            | api.storePerson      | App\Http\Controllers\PersonController@store          | api        |
+| GET/HEAD | api/v1/people/{person}         | api.getPerson        | App\Http\Controllers\PersonController@show           | api        |
+| PUT      | api/v1/people/{person}         | api.updatePerson     | App\Http\Controllers\PersonController@update         | api        |
+| DELETE   | api/v1/people/{person}         | api.destroyPerson    | App\Http\Controllers\PersonController@destroy        | api        |
+| GET/HEAD | api/v1/quests                  | api.allQuests        | App\Http\Controllers\QuestController@index           | api        |
+| POST     | api/v1/quests/store            | api.storeQuest       | App\Http\Controllers\QuestController@store           | api        |
+| GET/HEAD | api/v1/quests/{quest}          | api.getQuest         | App\Http\Controllers\QuestController@show            | api        |
+| PUT      | api/v1/quests/{quest}          | api.updateQuest      | App\Http\Controllers\QuestController@update          | api        |
+| DELETE   | api/v1/quests/{quest}          | api.destroyQuest     | App\Http\Controllers\QuestController@destroy         | api        |
+| GET/HEAD | api/v1/regions                 | api.allRegion        | App\Http\Controllers\RegionController@index          | api        |
+| POST     | api/v1/regions/store           | api.storeRegion      | App\Http\Controllers\RegionController@store          | api        |
+| DELETE   | api/v1/regions/{region}        | api.destroyRegion    | App\Http\Controllers\RegionController@destroy        | api        |
+| GET/HEAD | api/v1/regions/{region}        | api.getRegion        | App\Http\Controllers\RegionController@show           | api        |
+| PUT      | api/v1/regions/{region}        | api.updateRegion     | App\Http\Controllers\RegionController@update         | api        |
+| GET/HEAD | api/v1/weapons                 | api.allWeapons       | App\Http\Controllers\WeaponController@index          | api        |
+| POST     | api/v1/weapons/store           | api.storeWeapon      | App\Http\Controllers\WeaponController@store          | api        |
+| GET/HEAD | api/v1/weapons/{weapon}        | api.getWeapon        | App\Http\Controllers\WeaponController@show           | api        |
+| PUT      | api/v1/weapons/{weapon}        | api.updateWeapon     | App\Http\Controllers\WeaponController@update         | api        |
+| DELETE   | api/v1/weapons/{weapon}        | api.destroyWeapon    | App\Http\Controllers\WeaponController@destroy        | api        |
 
 ## Resfresh je database
 Wanneer je een tijd bezig bent met dezelfde dataset kan het zijn dat je de database zou willen refreshen en alle originele data weer terug zou willen halen. 
